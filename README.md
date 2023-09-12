@@ -4,75 +4,11 @@ This README contains commands that I find useful, particularly on **UNIX-like** 
 
 ## Table of Contents
 
-* [System Resources](#system-resources)
-* [Python](#python)
 * [Conda](#conda)
-* [Git](#git)
 * [Docker](#docker)
-
-## System Resources
-
-### Show running processes
-
-```bash
-top
-```
-
-### Show info about CPU
-
-```bash
-lscpu
-```
-
-### Show info about memory
-
-```bash
-free -h
-```
-
-### Monitor CPU & memory
-
-```bash
-htop
-```
-
-### Monitor NVIDIA GPU
-
-```bash
-watch -n 1 nvidia-smi
-```
-
-### Show disk usage
-
-```bash
-df -h
-```
-
-### Show directory size
-
-```bash
-du -h <path/to/dir>
-```
-
-Example:
-
-```bash
-du -h datasets/
-```
-
-## Python
-
-### Create `requirements.py`
-
-```bash
-pip freeze > requirements.py
-```
-
-### Clear cache (`pip`)
-
-```bash
-pip cache purge
-```
+* [Git](#git)
+* [Python](#python)
+* [System Resources](#system-resources)
 
 ## Conda
 
@@ -118,62 +54,6 @@ conda deactivate ml
 
 ```bash
 conda clean -a
-```
-
-## Git
-
-### Clone repo
-
-```bash
-git clone {<repo_url>, <username>/<repo_name>}
-```
-
-### Show uncommitted changes
-
-```bash
-git status
-```
-
-### Show differences
-
-```bash
-git diff
-```
-
-### Add changes to staging area
-
-```bash
-git add <file>...
-```
-
-Example:
-
-```bash
-git add .
-```
-
-### Restore files in working directory
-
-```bash
-git restore <file>...
-```
-
-### Commit changes to local repo
-
-```bash
-git commit -m "<message>"
-```
-
-### Push local changes to remote repo
-
-```bash
-git push
-```
-
-### Pull remote changes to local repo
-
-```bash
-git pull
 ```
 
 ## Docker
@@ -332,4 +212,124 @@ docker save -o <output_file.tar> <image_name>
 
 ```bash
 docker load -i <input_file.tar>
+```
+
+## Git
+
+### Clone repo
+
+```bash
+git clone {<repo_url>, <username>/<repo_name>}
+```
+
+### Show uncommitted changes
+
+```bash
+git status
+```
+
+### Show differences
+
+```bash
+git diff
+```
+
+### Add changes to staging area
+
+```bash
+git add <file>...
+```
+
+Example:
+
+```bash
+git add .
+```
+
+### Restore files in working directory
+
+```bash
+git restore <file>...
+```
+
+### Commit changes to local repo
+
+```bash
+git commit -m "<message>"
+```
+
+### Push local changes to remote repo
+
+```bash
+git push
+```
+
+### Pull remote changes to local repo
+
+```bash
+git pull
+```
+
+## Python
+
+### Create `requirements.py`
+
+```bash
+pip freeze > requirements.py
+```
+
+### Clear cache (`pip`)
+
+```bash
+pip cache purge
+```
+
+## System Resources
+
+### Show running processes
+
+```bash
+top
+```
+
+### Show info about CPU
+
+```bash
+lscpu
+```
+
+### Show info about memory
+
+```bash
+free -h
+```
+
+### Monitor CPU & memory
+
+```bash
+htop
+```
+
+### Monitor NVIDIA GPU
+
+```bash
+watch -n 1 nvidia-smi
+```
+
+### Show disk usage
+
+```bash
+df -h
+```
+
+### Show directory size
+
+```bash
+du -h <path/to/dir>
+```
+
+Example:
+
+```bash
+du -h datasets/
 ```
