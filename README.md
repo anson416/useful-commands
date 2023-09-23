@@ -9,6 +9,7 @@ This README contains commands that I find useful, particularly on **UNIX-like** 
 * [Git](#git)
 * [Python](#python)
 * [System Resources](#system-resources)
+* [Miscellaneous](#miscellaneous)
 
 ## Conda
 
@@ -325,7 +326,7 @@ df -h
 ### Show directory size
 
 ```bash
-du -h <path/to/dir>
+du -h <dir>
 ```
 
 Example:
@@ -333,3 +334,13 @@ Example:
 ```bash
 du -h datasets/
 ```
+
+## Miscellaneous
+
+### Download files
+
+```bash
+wget [-P <dir>] <urls>
+```
+
+_Note_: `-P`: Specify download directory, which defaults to `.` (i.e., current directory).
