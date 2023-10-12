@@ -19,7 +19,7 @@ This README contains commands that I find useful, particularly on **UNIX-like** 
 conda create -n <env_name> [<packages>] [-y]
 ```
 
-_Note_: `<packages>` is a list of packages to install in the environment. Use `-y` to automatically answer "yes" to any confirmations.
+_Note_: `<packages>`: List of packages to install in the environment. `-y`: Answer "yes" to any confirmations automatically.
 
 Example:
 
@@ -216,6 +216,22 @@ docker load -i <input_file.tar>
 ```
 
 ## Git
+
+### Set commit email
+
+```bash
+git config [--global] user.email <email>
+```
+
+_Note_: `--global`: Set commit email for every repo on the computer.
+
+### Set commit username
+
+```bash
+git config [--global] user.name "<username>"
+```
+
+_Note_: `--global`: Set commit username for every repo on the computer.
 
 ### Clone repo
 
