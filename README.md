@@ -16,10 +16,11 @@ This README contains commands that I find useful, particularly on **UNIX-like** 
 ### Create virtual environment
 
 ```bash
-conda create -n <env_name> [<packages>] [-y]
+conda create -n <env_name> [<package>...] [-y]
 ```
 
-_Note_: `<packages>`: List of packages to install in the environment. `-y`: Answer "yes" to any confirmations automatically.
+`<package>...`: List of packages to install in the environment.
+`-y`: Answer "yes" to any confirmations automatically.
 
 Example:
 
@@ -71,7 +72,7 @@ docker images
 docker ps -a [--size]
 ```
 
-_Note_: `--size`: Show size of each container.
+`--size`: Show size of each container.
 
 ### Pull image
 
@@ -91,7 +92,9 @@ docker pull nvidia/cuda:11.8.0-devel-ubuntu22.04
 docker run [--gpus all] [-p <host_port>:<container_port>] [-v <host_dir>:<container_dir>] -it --name <container_name> <image_name>:<tag>
 ```
 
-_Note_: `--gpus all`: Access all available GPUs. `-p <host_port>:<container_port>`: Map a port on the container to that on the host. `-v <host_dir>:<container_dir>`: Mount a directory on the host inside the container.
+`--gpus all`: Access all available GPUs.
+`-p <host_port>:<container_port>`: Map a port on the container to that on the host.
+`-v <host_dir>:<container_dir>`: Mount a directory on the host inside the container.
 
 Example:
 
@@ -117,7 +120,8 @@ docker attach deeplearning
 docker {stop, kill} <container_name_or_id>
 ```
 
-_Note_: `stop`: Exit gracefully; `kill`: Exit immediately.
+`stop`: Exit gracefully.
+`kill`: Exit immediately.
 
 Example:
 
@@ -206,13 +210,13 @@ docker commit <container_name_or_id> <image_name>
 ### Export image as `.tar`
 
 ```bash
-docker save -o <output_file.tar> <image_name>
+docker save -o <output_file>.tar <image_name>
 ```
 
 ### Load image from `.tar`
 
 ```bash
-docker load -i <input_file.tar>
+docker load -i <input_file>.tar
 ```
 
 ## Git
@@ -223,7 +227,7 @@ docker load -i <input_file.tar>
 git config [--global] user.email <email>
 ```
 
-_Note_: `--global`: Set commit email for every repo on the computer.
+`--global`: Set commit email for every repository on the computer.
 
 ### Set commit username
 
@@ -231,13 +235,21 @@ _Note_: `--global`: Set commit email for every repo on the computer.
 git config [--global] user.name "<username>"
 ```
 
-_Note_: `--global`: Set commit username for every repo on the computer.
+`--global`: Set commit username for every repository on the computer.
 
-### Clone repo
+### Clone public repository
 
 ```bash
 git clone {<repo_url>, <username>/<repo_name>}
 ```
+
+### Clone private repository
+
+```bash
+git clone https://<pat>@github.com/<username>/<repo_name>.git
+```
+
+To learn more about how to generate Personal Access Token (PAT), please visit [How to clone a private repository from GitHub](https://www.educative.io/answers/how-to-clone-a-private-repository-from-github).
 
 ### Show uncommitted changes
 
@@ -269,19 +281,19 @@ git add .
 git restore <file>...
 ```
 
-### Commit changes to local repo
+### Commit changes to local repository
 
 ```bash
 git commit -m "<message>"
 ```
 
-### Push local changes to remote repo
+### Push local changes to remote repository
 
 ```bash
 git push
 ```
 
-### Pull remote changes to local repo
+### Pull remote changes to local repository
 
 ```bash
 git pull
@@ -360,3 +372,9 @@ wget [-P <dir>] <urls>
 ```
 
 _Note_: `-P`: Specify download directory, which defaults to `.` (i.e., current directory).
+
+### Zip files
+
+```bash
+zip -r ./<zip_name>.zip <file>... [-x <exclude>...]
+```
