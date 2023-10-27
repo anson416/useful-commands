@@ -20,6 +20,7 @@ conda create -n <env_name> [<package>...] [-y]
 ```
 
 `<package>...`: List of packages to install in the environment.
+
 `-y`: Answer "yes" to any confirmations automatically.
 
 Example:
@@ -93,7 +94,9 @@ docker run [--gpus all] [-p <host_port>:<container_port>] [-v <host_dir>:<contai
 ```
 
 `--gpus all`: Access all available GPUs.
+
 `-p <host_port>:<container_port>`: Map a port on the container to that on the host.
+
 `-v <host_dir>:<container_dir>`: Mount a directory on the host inside the container.
 
 Example:
@@ -121,6 +124,7 @@ docker {stop, kill} <container_name_or_id>
 ```
 
 `stop`: Exit gracefully.
+
 `kill`: Exit immediately.
 
 Example:
