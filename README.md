@@ -253,7 +253,7 @@ git clone {<repo_url>, <username>/<repo_name>}
 git clone https://<pat>@github.com/<username>/<repo_name>.git
 ```
 
-To learn more about how to generate Personal Access Token (PAT), please visit [How to clone a private repository from GitHub](https://www.educative.io/answers/how-to-clone-a-private-repository-from-github).
+For more information on how to generate Personal Access Token (PAT), visit [How to clone a private repository from GitHub](https://www.educative.io/answers/how-to-clone-a-private-repository-from-github).
 
 ### Show uncommitted changes
 
