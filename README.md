@@ -53,7 +53,7 @@ Example:
 conda deactivate ml
 ```
 
-### Clear cache (`conda`)
+### Clear `conda` cache
 
 ```bash
 conda clean -a
@@ -305,16 +305,36 @@ git pull
 
 ## Python
 
+### Install from public GitHub repository
+
+```bash
+python -m pip install git+https://github.com/<username>/<repo_name>.git[@<branch>]
+```
+
+`@<branch>`: Select desired branch.
+
+Example:
+
+```bash
+python -m pip install git+https://github.com/anson416/python-utilities.git
+```
+
+### Install from private GitHub repository
+
+```bash
+python -m pip install git+https://<pat>@github.com/<username>/<repo_name>.git[@<branch>]
+```
+
 ### Create `requirements.py`
 
 ```bash
-pip freeze > requirements.py
+python -m pip freeze > requirements.py
 ```
 
-### Clear cache (`pip`)
+### Clear `pip` cache
 
 ```bash
-pip cache purge
+python -m pip cache purge
 ```
 
 ## System Resources
