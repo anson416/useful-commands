@@ -90,14 +90,16 @@ docker pull nvidia/cuda:11.8.0-devel-ubuntu22.04
 ### Create container
 
 ```bash
-docker run [--gpus all] [-p <host_port>:<container_port>] [-v <host_dir>:<container_dir>] -it --name <container_name> <image_name>:<tag>
+docker run [--gpus all] [-p <host_port>:<container_port>] [-v <host_dir>:<container_dir>] -it --name <container_name> <image_name>:<tag> [<arg>...]
 ```
 
 `--gpus all`: Access all available GPUs.
 
-`-p <host_port>:<container_port>`: Map a port on the container to that on the host.
+`-p <host_port>:<container_port>`: Map `<container_port>` on the container to `<host_port>` on the host.
 
-`-v <host_dir>:<container_dir>`: Mount a directory on the host inside the container.
+`-v <host_dir>:<container_dir>`: Mount `<host_dir>` on the host to `<container_dir>` inside the container.
+
+`<arg>...`: Arguments passed to `ENTRYPOINT` (in `Dockerfile`).
 
 Example:
 
@@ -196,8 +198,16 @@ docker rm deeplearning
 ### Build image from `Dockerfile`
 
 ```bash
-docker build -t <tag> <path/to/Dockerfile>
+docker build [--platform <arch>] [--build-arg <arg>=<value>] [--no-cache] -t <image_name>[:<tag>] <path/to/Dockerfile>
 ```
+
+`--platform <arch>`: Set build platform/architecture to `<arch>`.
+
+`--build-arg <arg>=<value>`: Set build-time variable `<arg>` to `<value>`. If you want to set multiple build-time variables, use multiple `--build-arg`s.
+
+`--no-cache`: Do not use cache when building the image.
+
+`:<tag>`: Set image tag to `<tag>`, which defaults to "latest".
 
 Example:
 
@@ -222,6 +232,14 @@ docker save -o <output_file>.tar <image_name>
 ```bash
 docker load -i <input_file>.tar
 ```
+
+### Clear `docker` cache
+
+```bash
+docker builder prune [-a]
+```
+
+`-a`: Remove all unused build cache, not just dangling ones.
 
 ## Git
 
@@ -304,6 +322,22 @@ git pull
 ```
 
 ## Python
+
+### Install Package
+
+```bash
+python -m pip install [--no-deps] [--no-cache-dir] [-q] [-U] {<package>..., -r <path_to_requirements>}
+```
+
+`--no-deps`: Do not install package dependencies.
+
+`--no-cache-dir`: Disable caching.
+
+`-q`: Give less output.
+
+`-U`: Upgrade `<package>...` to the newest available version.
+
+`-r <path_to_requirements>`: Install from `<path_to_requirements>`.
 
 ### Install from public GitHub repository
 
@@ -395,7 +429,7 @@ du -h datasets/
 wget [-P <dir>] <urls>
 ```
 
-_Note_: `-P`: Specify download directory, which defaults to `.` (i.e., current directory).
+`-P`: Set download directory to `<dir>`, which defaults to `.` (i.e., current directory).
 
 ### Zip files
 
