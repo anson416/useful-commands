@@ -90,7 +90,11 @@ docker pull nvidia/cuda:11.8.0-devel-ubuntu22.04
 ### Create container
 
 ```bash
-docker run [--gpus all] [-p <host_port>:<container_port>] [-v <host_dir>:<container_dir>] -it --name <container_name> <image_name>:<tag> [<arg>...]
+docker run [--gpus all] \
+    [-p <host_port>:<container_port>] \
+    [-v <host_dir>:<container_dir>] \
+    -it --name <container_name> <image_name>:<tag> \
+    [<arg>...]
 ```
 
 `--gpus all`: Access all available GPUs.
@@ -99,13 +103,17 @@ docker run [--gpus all] [-p <host_port>:<container_port>] [-v <host_dir>:<contai
 
 `-v <host_dir>:<container_dir>`: Mount `<host_dir>` on the host to `<container_dir>` inside the container.
 
-`<arg>...`: Arguments passed to `ENTRYPOINT` (in `Dockerfile`).
+`<arg>...`: Arguments passed to `ENTRYPOINT` (if any, in `Dockerfile`).
 
 Example:
 
 ```bash
 docker run -it --name deeplearning nvidia/cuda:11.8.0-devel-ubuntu22.04
 ```
+
+### Detach from running container
+
+Press `Ctrl` + `p`, then `Ctrl` + `q`.
 
 ### Attach to running container
 
@@ -119,15 +127,15 @@ Example:
 docker attach deeplearning
 ```
 
-### Exit container
+### Stop container
 
 ```bash
 docker {stop, kill} <container_name_or_id>
 ```
 
-`stop`: Exit gracefully.
+`stop`: Stop gracefully.
 
-`kill`: Exit immediately.
+`kill`: Stop immediately.
 
 Example:
 
@@ -135,16 +143,18 @@ Example:
 docker stop deeplearning
 ```
 
-### Restart exited container
+### Restart stopped container
 
 ```bash
-docker start <container_name_or_id>
+docker start [-i] <container_name_or_id>
 ```
+
+`-i`: Attach to container's STDIN (i.e. interactive mode).
 
 Example:
 
 ```bash
-docker start deeplearning
+docker start -i deeplearning
 ```
 
 ### Copy files to container
@@ -195,10 +205,18 @@ Example:
 docker rm deeplearning
 ```
 
+### Remove image
+
+```bash
+docker image rm <image_name>:<tag>
+```
+
 ### Build image from `Dockerfile`
 
 ```bash
-docker build [--platform <arch>] [--build-arg <arg>=<value>] [--no-cache] -t <image_name>[:<tag>] <path/to/Dockerfile>
+docker build [--platform <arch>] \
+    [--build-arg <arg>=<value>] [--no-cache] \
+    -t <image_name>[:<tag>] <path/to/Dockerfile>
 ```
 
 `--platform <arch>`: Set build platform/architecture to `<arch>`.
@@ -326,7 +344,9 @@ git pull
 ### Install Package
 
 ```bash
-python -m pip install [--no-deps] [--no-cache-dir] [-q] [-U] {<package>..., -r <path_to_requirements>}
+python -m pip install [--no-deps] \
+    [--no-cache-dir] [-q] [-U] \
+    {<package>..., -r <path_to_requirements>}
 ```
 
 `--no-deps`: Do not install package dependencies.
