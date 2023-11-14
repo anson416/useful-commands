@@ -81,7 +81,7 @@ docker ps -a [--size]
 docker pull <repo>[:<tag>]
 ```
 
-`:<tag>`: Specify tag `<tag>`, which defaults to "latest", from repository `<repo>`.
+`:<tag>`: Specify tag `<tag>`, which defaults to `latest`, from repository `<repo>`.
 
 Example:
 
@@ -239,7 +239,7 @@ docker build \
 
 `--no-cache`: Do not use cache when building the image.
 
-`-t <repo>[:<tag>]`: Assign repository name `<repo>` to the image. Optionally, assign tag `<tag>` to the image, which defaults to "latest".
+`-t <repo>[:<tag>]`: Assign repository name `<repo>` to the image. Optionally, assign tag `<tag>` to the image, which defaults to `latest`.
 
 Example:
 
