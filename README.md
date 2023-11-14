@@ -78,8 +78,10 @@ docker ps -a [--size]
 ### Pull image
 
 ```bash
-docker pull <image_name>:<tag>
+docker pull <repo>[:<tag>]
 ```
+
+`:<tag>`: Specify tag `<tag>`, which defaults to "latest", from repository `<repo>`.
 
 Example:
 
@@ -96,7 +98,7 @@ docker run \
     [-v <host_dir>:<container_dir>] \
     [{-d, -it}] \
     [--name <container_name>] \
-    <image_name_or_id>:<tag> \
+    {<repo>[:<tag>], <image_id>} \
     [<arg>...]
 ```
 
@@ -120,7 +122,7 @@ Example:
 docker run -it --name deeplearning nvidia/cuda:11.8.0-devel-ubuntu22.04
 ```
 
-### Detach from running container
+### Detach from container
 
 Press `Ctrl` + `p`, then `Ctrl` + `q`.
 
@@ -217,7 +219,7 @@ docker rm deeplearning
 ### Remove image
 
 ```bash
-docker image rm <image_name_or_id>:<tag>
+docker image rm {<repo>[:<tag>], <image_id>}
 ```
 
 ### Build image from `Dockerfile`
@@ -227,7 +229,7 @@ docker build \
     [--platform <arch>] \
     [--build-arg <arg>=<value>] \
     [--no-cache] \
-    [-t <image_name>[:<tag>]] \
+    [-t <repo>[:<tag>]] \
     <path/to/Dockerfile>
 ```
 
@@ -237,7 +239,7 @@ docker build \
 
 `--no-cache`: Do not use cache when building the image.
 
-`-t <image_name>[:<tag>]`: Assign name `<image_name>` to the image. Optionally, assign tag `<tag>` to the image, which defaults to "latest".
+`-t <repo>[:<tag>]`: Assign repository name `<repo>` to the image. Optionally, assign tag `<tag>` to the image, which defaults to "latest".
 
 Example:
 
@@ -248,15 +250,13 @@ docker build -t my-image .
 ### Save container as image
 
 ```bash
-docker commit <container_name_or_id> [<image_name>[:<tag>]]
+docker commit <container_name_or_id> [<repo>[:<tag>]]
 ```
-
-`<image_name>[:<tag>]`: Assign name `<image_name>` to the image. Optionally, assign tag `<tag>` to the image, which defaults to "latest".
 
 ### Export image as `.tar`
 
 ```bash
-docker save -o <output_file>.tar <image_name_or_id>
+docker save -o <output_file>.tar {<repo>[:tag], <image_id>}
 ```
 
 ### Load image from `.tar`
