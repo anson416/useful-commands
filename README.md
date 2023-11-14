@@ -73,7 +73,7 @@ docker images
 docker ps -a [--size]
 ```
 
-`--size`: Show size of each container.
+`--size`: Show the size of each container.
 
 ### Pull image
 
@@ -87,13 +87,16 @@ Example:
 docker pull nvidia/cuda:11.8.0-devel-ubuntu22.04
 ```
 
-### Create container
+### Create and run container
 
 ```bash
-docker run [--gpus all] \
+docker run \
+    [--gpus all] \
     [-p <host_port>:<container_port>] \
     [-v <host_dir>:<container_dir>] \
-    -it --name <container_name> <image_name>:<tag> \
+    [{-d, -it}] \
+    [--name <container_name>] \
+    <image_name_or_id>:<tag> \
     [<arg>...]
 ```
 
@@ -102,6 +105,12 @@ docker run [--gpus all] \
 `-p <host_port>:<container_port>`: Map `<container_port>` on the container to `<host_port>` on the host.
 
 `-v <host_dir>:<container_dir>`: Mount `<host_dir>` on the host to `<container_dir>` inside the container.
+
+`-d`: Run the container in background (i.e., detached mode).
+
+`-it`: Keep STDIN open even if not attached (i.e., interactive mode).
+
+`--name <container_name>`: Assign name `<container_name>` to the container.
 
 `<arg>...`: Arguments passed to `ENTRYPOINT` (if any, in `Dockerfile`).
 
@@ -149,7 +158,7 @@ docker stop deeplearning
 docker start [-i] <container_name_or_id>
 ```
 
-`-i`: Attach to container's STDIN (i.e. interactive mode).
+`-i`: Attach to container's STDIN (i.e., interactive mode).
 
 Example:
 
@@ -208,15 +217,18 @@ docker rm deeplearning
 ### Remove image
 
 ```bash
-docker image rm <image_name>:<tag>
+docker image rm <image_name_or_id>:<tag>
 ```
 
 ### Build image from `Dockerfile`
 
 ```bash
-docker build [--platform <arch>] \
-    [--build-arg <arg>=<value>] [--no-cache] \
-    -t <image_name>[:<tag>] <path/to/Dockerfile>
+docker build \
+    [--platform <arch>] \
+    [--build-arg <arg>=<value>] \
+    [--no-cache] \
+    [-t <image_name>[:<tag>]] \
+    <path/to/Dockerfile>
 ```
 
 `--platform <arch>`: Set build platform/architecture to `<arch>`.
@@ -225,7 +237,7 @@ docker build [--platform <arch>] \
 
 `--no-cache`: Do not use cache when building the image.
 
-`:<tag>`: Set image tag to `<tag>`, which defaults to "latest".
+`-t <image_name>[:<tag>]`: Assign name `<image_name>` to the image. Optionally, assign tag `<tag>` to the image, which defaults to "latest".
 
 Example:
 
@@ -236,13 +248,15 @@ docker build -t my-image .
 ### Save container as image
 
 ```bash
-docker commit <container_name_or_id> <image_name>
+docker commit <container_name_or_id> [<image_name>[:<tag>]]
 ```
+
+`<image_name>[:<tag>]`: Assign name `<image_name>` to the image. Optionally, assign tag `<tag>` to the image, which defaults to "latest".
 
 ### Export image as `.tar`
 
 ```bash
-docker save -o <output_file>.tar <image_name>
+docker save -o <output_file>.tar <image_name_or_id>
 ```
 
 ### Load image from `.tar`
@@ -267,7 +281,7 @@ docker builder prune [-a]
 git config [--global] user.email <email>
 ```
 
-`--global`: Set commit email for every repository on the computer.
+`--global`: Set the commit email for every repository on the computer.
 
 ### Set commit username
 
@@ -275,7 +289,7 @@ git config [--global] user.email <email>
 git config [--global] user.name "<username>"
 ```
 
-`--global`: Set commit username for every repository on the computer.
+`--global`: Set the commit username for every repository on the computer.
 
 ### Clone public repository
 
@@ -346,7 +360,7 @@ git pull
 ```bash
 python -m pip install [--no-deps] \
     [--no-cache-dir] [-q] [-U] \
-    {<package>..., -r <path_to_requirements>}
+    {<package>..., -r <path/to/requirements>}
 ```
 
 `--no-deps`: Do not install package dependencies.
@@ -357,7 +371,7 @@ python -m pip install [--no-deps] \
 
 `-U`: Upgrade `<package>...` to the newest available version.
 
-`-r <path_to_requirements>`: Install from `<path_to_requirements>`.
+`-r <path/to/requirements>`: Install from `<path/to/requirements>`.
 
 ### Install from public GitHub repository
 
