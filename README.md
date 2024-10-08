@@ -97,6 +97,7 @@ docker run \
     [-p <host_port>:<container_port>] \
     [-v <host_dir>:<container_dir>] \
     [{-d, -it}] \
+    [--rm]
     [--name <container_name>] \
     {<repo>[:<tag>], <image_id>} \
     [<arg>...]
@@ -111,6 +112,8 @@ docker run \
 `-d`: Run the container in background (i.e., detached mode).
 
 `-it`: Keep STDIN open even if not attached (i.e., interactive mode).
+
+`--rm`: Automatically remove the container when it exits.
 
 `--name <container_name>`: Assign name `<container_name>` to the container.
 
