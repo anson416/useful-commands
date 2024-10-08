@@ -97,7 +97,7 @@ docker run \
     [-p <host_port>:<container_port>] \
     [-v <host_dir>:<container_dir>] \
     [{-d, -it}] \
-    [--rm]
+    [--rm] \
     [--name <container_name>] \
     {<repo>[:<tag>], <image_id>} \
     [<arg>...]
